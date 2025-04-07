@@ -1,0 +1,341 @@
+openapi: 3.0.0
+info:
+  title: Enyday API
+  description: |
+    This API allows integration with the Enyday platform, providing access to user authentication,
+    user details, authorization data, address information, and power consumption data. It helps
+    in integrating Enyday into platforms like Home Assistant.
+  version: 1.0.0
+servers:
+- url: https://app.enyday.com/connected/api
+paths:
+  /1.0/user/user:
+    get:
+      summary: Get User Details
+      operationId: getUserDetails
+      responses:
+        "200":
+          description: User details fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDetailsResponse'
+      security:
+      - api_key: []
+    post:
+      summary: Get User Auth Token
+      operationId: getUserAuthToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user_user_body'
+        required: true
+      responses:
+        "200":
+          description: Auth token successfully generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokenResponse'
+      security: []
+  /1.0/eloverblik/authorization:
+    get:
+      summary: Get Eloverblik Authorizations
+      operationId: getEloverblikAuthorizations
+      parameters:
+      - name: user_id
+        in: query
+        description: The user ID to fetch authorizations
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Eloverblik authorizations fetched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EloverblikAuthorizationResponse'
+      security:
+      - api_key: []
+  /2.0/address/address:
+    get:
+      summary: Get Addresses By UserId
+      operationId: getAddressesByUserId
+      parameters:
+      - name: user_id
+        in: query
+        description: The user ID to fetch addresses
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Addresses retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressResponse'
+      security:
+      - api_key: []
+  /1.0/btm/invoice-line-graph:
+    get:
+      summary: Get Hourly Power Internal and External By UserId and AddressId
+      operationId: getHourlyPowerData
+      parameters:
+      - name: user_id
+        in: query
+        description: The user ID for the data
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: address_id
+        in: query
+        description: The address ID for the data
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: begin
+        in: query
+        description: Start time for the data
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        description: End time for the data
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        "200":
+          description: Power consumption data retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PowerConsumptionResponse'
+      security:
+      - api_key: []
+components:
+  schemas:
+    AuthTokenResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        auth_token:
+          type: string
+    UserDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        last_changed_password:
+          type: string
+          nullable: true
+        completeProfile:
+          type: string
+          nullable: true
+        hasUserRegisteredHisDevices:
+          type: boolean
+        nrOfDevices:
+          type: integer
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDetailsResponse_roles'
+        eloverblik_customer_key:
+          type: string
+          nullable: true
+        user_btms:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDetailsResponse_user_btms'
+        admin_btms:
+          type: array
+          items:
+            type: object
+        reg_date:
+          type: string
+          nullable: true
+        PostNumber:
+          type: string
+          nullable: true
+        PhoneNumber:
+          type: string
+        hasBattery:
+          type: boolean
+        hasEV:
+          type: boolean
+        subscription:
+          type: boolean
+        customer_id:
+          type: string
+          nullable: true
+        is_bot:
+          type: boolean
+        address_id:
+          type: integer
+          nullable: true
+        submeter_id:
+          type: integer
+        last_login:
+          type: string
+          format: date-time
+        expo_push_token:
+          type: string
+          nullable: true
+    EloverblikAuthorizationResponse:
+      type: object
+      properties:
+        eloverblik_authorizations:
+          type: array
+          items:
+            type: object
+    AddressResponse:
+      type: object
+      properties:
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressResponse_addresses'
+    PowerConsumptionResponse:
+      type: object
+      properties:
+        invoiced:
+          type: array
+          items:
+            $ref: '#/components/schemas/PowerConsumptionResponse_invoiced'
+    user_user_body:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    UserDetailsResponse_roles:
+      type: object
+      properties:
+        name:
+          type: string
+    UserDetailsResponse_periods:
+      type: object
+      properties:
+        period_begin:
+          type: string
+          format: date-time
+        period_end:
+          type: string
+          format: date-time
+          nullable: true
+    UserDetailsResponse_user_btms:
+      type: object
+      properties:
+        btm_id:
+          type: integer
+        btm_name:
+          type: string
+        access_address_id:
+          type: integer
+        access_address:
+          type: string
+        use_buildings:
+          type: integer
+        nordpool_area:
+          type: string
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDetailsResponse_periods'
+        new_price_model:
+          type: boolean
+    AddressResponse_submeters:
+      type: object
+      properties:
+        submeter_id:
+          type: integer
+        submeter_external_id:
+          type: string
+        submeter_name:
+          type: string
+        submeter_direction:
+          type: integer
+        submeter_box_id:
+          type: integer
+        submeter_box_external_id:
+          type: string
+        submeter_box_name:
+          type: string
+    AddressResponse_addresses:
+      type: object
+      properties:
+        id:
+          type: integer
+        access_address_id:
+          type: integer
+        external_id:
+          type: string
+        address:
+          type: string
+        floor:
+          type: string
+        side:
+          type: string
+        is_virtual:
+          type: integer
+        door_number:
+          type: integer
+        total_doors_on_floor:
+          type: integer
+        building_id:
+          type: integer
+          nullable: true
+        btm_id:
+          type: integer
+        submeters:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressResponse_submeters'
+    PowerConsumptionResponse_invoiced:
+      type: object
+      properties:
+        period_begin:
+          type: string
+          format: date-time
+        period_end:
+          type: string
+          format: date-time
+        power_internal:
+          type: number
+          format: float
+        power_external:
+          type: number
+          format: float
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header

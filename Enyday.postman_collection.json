@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "1d8cd04d-9231-48df-a0c3-736aa3aaf81d",
+		"name": "Enyday",
+		"description": "This collection describes what Enyday API is doing behind its website. This will help develop an Enyday integration onto Home Assistant.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27575854"
+	},
+	"item": [
+		{
+			"name": "Get User Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDY4MDYxOTMsImlhdCI6MTczMTI1NDE5Mywic3ViIjoiYnJ1bm8uYWRhbUBwbS5tZSJ9.3_j3wecCJNyOy__tdXNjqpu_OCXFtdd27XSGAIfN1GU",
+						"disabled": true
+					},
+					{
+						"key": "Referer",
+						"value": "https://app.enyday.com/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "app.enyday.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"my-username\",\n    \"password\":\"my-password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.enyday.com/connected/api/1.0/user/user",
+					"protocol": "https",
+					"host": [
+						"app",
+						"enyday",
+						"com"
+					],
+					"path": [
+						"connected",
+						"api",
+						"1.0",
+						"user",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Eloverblik authorisations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDY4MDYxOTMsImlhdCI6MTczMTI1NDE5Mywic3ViIjoiYnJ1bm8uYWRhbUBwbS5tZSJ9.3_j3wecCJNyOy__tdXNjqpu_OCXFtdd27XSGAIfN1GU"
+					},
+					{
+						"key": "Referer",
+						"value": "https://app.enyday.com/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "app.enyday.com"
+					}
+				],
+				"url": {
+					"raw": "https://app.enyday.com/connected/api/1.0/eloverblik/authorization?user_id=3971",
+					"protocol": "https",
+					"host": [
+						"app",
+						"enyday",
+						"com"
+					],
+					"path": [
+						"connected",
+						"api",
+						"1.0",
+						"eloverblik",
+						"authorization"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "3971"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Addresses By UserId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDY4MDYxOTMsImlhdCI6MTczMTI1NDE5Mywic3ViIjoiYnJ1bm8uYWRhbUBwbS5tZSJ9.3_j3wecCJNyOy__tdXNjqpu_OCXFtdd27XSGAIfN1GU"
+					},
+					{
+						"key": "Referer",
+						"value": "https://app.enyday.com/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "app.enyday.com"
+					}
+				],
+				"url": {
+					"raw": "https://app.enyday.com/connected/api/2.0/address/address?user_id=3971",
+					"protocol": "https",
+					"host": [
+						"app",
+						"enyday",
+						"com"
+					],
+					"path": [
+						"connected",
+						"api",
+						"2.0",
+						"address",
+						"address"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "3971"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get hourly consumption By UserId and AddressId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDY4MDYxOTMsImlhdCI6MTczMTI1NDE5Mywic3ViIjoiYnJ1bm8uYWRhbUBwbS5tZSJ9.3_j3wecCJNyOy__tdXNjqpu_OCXFtdd27XSGAIfN1GU"
+					},
+					{
+						"key": "Referer",
+						"value": "https://app.enyday.com/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "app.enyday.com"
+					}
+				],
+				"url": {
+					"raw": "https://app.enyday.com/connected/api/1.0/btm/invoice-line-graph?begin=2024-10-10T16:56:33&end=2024-11-10T16:56:33&user_id=3971&address_id=2476",
+					"protocol": "https",
+					"host": [
+						"app",
+						"enyday",
+						"com"
+					],
+					"path": [
+						"connected",
+						"api",
+						"1.0",
+						"btm",
+						"invoice-line-graph"
+					],
+					"query": [
+						{
+							"key": "begin",
+							"value": "2024-10-10T16:56:33"
+						},
+						{
+							"key": "end",
+							"value": "2024-11-10T16:56:33"
+						},
+						{
+							"key": "user_id",
+							"value": "3971"
+						},
+						{
+							"key": "address_id",
+							"value": "2476"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Auth Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"my-username\",\n    \"password\":\"my-password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.enyday.com/connected/api/1.0/user/user",
+					"protocol": "https",
+					"host": [
+						"app",
+						"enyday",
+						"com"
+					],
+					"path": [
+						"connected",
+						"api",
+						"1.0",
+						"user",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
