@@ -7,7 +7,7 @@ from setuptools import setup, find_packages  # noqa: H301
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "EnydayPy"
-VERSION = "1.0.1"
+VERSION = "1.0.3"
 PYTHON_REQUIRES = ">= 3.8"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 3.0.0",
@@ -23,13 +23,11 @@ setup(
     author="Bruno Adam",
     author_email="bruno.adam@pm.me",
     url="https://github.com/bruadam/EnydayPy",
-    keywords=["OpenAPI", "OpenAPI-Generator", "Enyday API"],
+    keywords=["OpenAPI", "OpenAPI-Generator", "Enyday API", "Energy Management System", "Energy Community", "Denmark"],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
-    long_description_content_type='text/markdown',
-    long_description="""\
-    This API allows integration with the Enyday platform, providing access to user authentication, user details, authorization data, address information, and power consumption data. It helps in integrating Enyday into platforms like Home Assistant. 
-    """,
+    long_description_content_type="text/markdown",
+    long_description=open("README.md").read(),
     package_data={"openapi_client": ["py.typed"]},
 )

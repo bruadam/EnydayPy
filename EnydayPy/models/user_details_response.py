@@ -50,7 +50,7 @@ class UserDetailsResponse(BaseModel):
     customer_id: Optional[StrictStr] = None
     is_bot: Optional[StrictBool] = None
     address_id: Optional[StrictInt] = None
-    submeter_id: Optional[StrictInt] = None
+    submeter_id: Optional[List[StrictInt]] = None
     last_login: Optional[datetime] = None
     expo_push_token: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["id", "firstName", "lastName", "email", "last_changed_password", "completeProfile", "hasUserRegisteredHisDevices", "nrOfDevices", "roles", "eloverblik_customer_key", "user_btms", "admin_btms", "reg_date", "PostNumber", "PhoneNumber", "hasBattery", "hasEV", "subscription", "customer_id", "is_bot", "address_id", "submeter_id", "last_login", "expo_push_token"]
